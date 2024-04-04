@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const dotenv = require('dotenv');
 const app = require('./app');
 
@@ -13,18 +12,13 @@ const DB = process.env.DATABASE.replace(
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
-    //useUnifiedTopology: true,
+    useUnifiedTopology: true,
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then((con) => {
-    console.log(con.connection);
-    console.log('DB connection successful'); 
-  });
-//console.log(app.get('env'));
-//console.log(process.env);
+  .then(() => console.log('DB connection successful!'));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
+  console.log(`App running on port: ${port}...`);
 });
